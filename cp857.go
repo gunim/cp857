@@ -170,8 +170,8 @@ var enc = [256]uint32{
 	0xdb002588, 0xb0002591, 0xb1002592, 0xb2002593, 0xfe0025a0, 0xfe0025a0, 0xfe0025a0, 0xfe0025a0,
 }
 
-// Decode converts 8bit character to utf8 rune
-func Decode(x byte) rune {
+// DecodeByte returns the Code page 857's rune decoding of the byte b.
+func DecodeByte(x byte) rune {
 	switch y := dec[x]; y.len {
 	case 1:
 		return rune(y.data[0])
@@ -183,10 +183,10 @@ func Decode(x byte) rune {
 	}
 }
 
-// Encode converts utf8 rune to 8bit character. If conversion is possible
-// value of ok returned true, else,  ok is false and replacement byte, 0x1A, is
-// returned.
-func Encode(r rune) (b byte, ok bool) {
+// EncodeRune returns the Code page 857's byte encoding of the rune r. ok is
+// whether r is in the repertoire. If not, b is set to the  the ASCII
+// substitute character '\x1a'.
+func EncodeRune(r rune) (b byte, ok bool) {
 	if r < 0x80 {
 		return byte(r), true
 	}
