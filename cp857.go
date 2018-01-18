@@ -174,8 +174,8 @@ var enc = [256]uint32{
 }
 
 // DecodeByte returns the Code page 857's rune decoding of the byte b.
-func DecodeByte(x byte) rune {
-	switch y := dec[x]; y.len {
+func DecodeByte(b byte) rune {
+	switch y := dec[b]; y.len {
 	case 1:
 		return rune(y.data[0])
 	case 2:
