@@ -1,3 +1,6 @@
+/*
+Package cp857 transforms between utf8 runes and the Code page 857 bytes.
+*/
 package cp857
 
 type utf8Enc struct {
