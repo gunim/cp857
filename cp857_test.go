@@ -6,7 +6,7 @@ import (
 	"github.com/gunim/cp857"
 )
 
-func TestDecode(t *testing.T) {
+func TestDecodeByte(t *testing.T) {
 	tests := []struct {
 		name string
 		x    byte
@@ -20,14 +20,14 @@ func TestDecode(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := cp857.Decode(tt.x); got != tt.want {
+			if got := cp857.DecodeByte(tt.x); got != tt.want {
 				t.Errorf("Decode() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestEncode(t *testing.T) {
+func EncodeRune(t *testing.T) {
 	tests := []struct {
 		name   string
 		r      rune
@@ -44,7 +44,7 @@ func TestEncode(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if gotB, gotOk := cp857.Encode(tt.r); gotB != tt.wantB || gotOk != tt.wantOk {
+			if gotB, gotOk := cp857.EncodeRune(tt.r); gotB != tt.wantB || gotOk != tt.wantOk {
 				t.Errorf("Encode() = %v, %v; want %v, %v", gotB, gotOk, tt.wantB, tt.wantOk)
 			}
 		})
